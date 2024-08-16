@@ -5,11 +5,11 @@
 #include <stdlib.h>
 #include <time.h>
 #define maxn 100006
-#define EPS 1e-9
 #define INF 1e9
+const double EPS = 1e-9;
 void input( double *,  double *,  double *);
 int existence_of_the_solution( double *,  double *,  double *);
- double discriminant( double *,  double *,  double *);
+double discriminant( double *,  double *,  double *);
 int existence_of_the_solution( double *,  double *,  double *);
 void solutions( double *,  double *,  double *);
 void solve( double *,  double *,  double *);
