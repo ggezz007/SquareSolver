@@ -21,7 +21,8 @@ int main() {
 }
 
 void input(long double * a, long double * b, long double * c) {
-    printf("your coefficients for quadratic equation (a * x^2 + b * x + c = 0):");
+    printf("your coefficients for quadratic equation (a * x^2 + b * x + c = 0): ");
+    printf("\nalso remember that b^2, 4*a*c, b^2+4*a*c should be the size long double, so smaller than 1.7E+308");
     printf("\na =");
     scanf(" %Lf", a);
     printf("b =");
