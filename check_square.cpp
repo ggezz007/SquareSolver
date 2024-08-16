@@ -1,23 +1,18 @@
 #include <TXLib.h>
 #include <stdio.h>
 #include <math.h>
-#include <string.h>
-#include <stdlib.h>
-#include <time.h>
-#define maxn 100006
-#define INF 1e9
-const double EPS = 1e-9;
-void input( double *,  double *,  double *);
-int existence_of_the_solution( double *,  double *,  double *);
-double discriminant( double *,  double *,  double *);
-int existence_of_the_solution( double *,  double *,  double *);
-void solutions( double *,  double *,  double *);
-void solve( double *,  double *,  double *);
+#define EPS 1e-9
+#define INF -1
+void input(double *, double *, double *);
+void output(const int, const double, const double );
+double discriminant(const double,const double,const double );
+int existence_of_the_solution(const double,const double,const double);
+void solutions(const double, const double, const double);
+void solve(double *, double *, double *);
 
-int flag = 0;
 
 int main() {
-     double a, b, c;
+    double a, b, c;
     solve(&a, &b, &c);
 }
 
@@ -31,70 +26,78 @@ void input( double * a,  double * b,  double * c) {
     printf("c =");
     scanf(" %lf", c);
 }
-
- double discriminant( double * a,  double * b,  double * c) {
-     double d = (*b)*(*b)-4*(*a)*(*c);
+void output(const int cnt,const double x1,const double x2) {
+    if (cnt == -1) {
+        printf("your equation has INF solutions in R quantity");
+    } else if (cnt == 0) {
+        printf("your equation has not solutions in R quantity");
+    } else if (cnt == 1) {
+        printf("your equation has one solution in R quantity:");
+        printf("\nx = %lf", x1);
+    } else {
+        printf("your equation has two solutions in R quantity:");
+        printf("\nx1 = %lf", x1);
+        printf("\nx2 = %lf", x2);
+    }
+}
+double discriminant(const double a,const double  b,const double  c) {
+    double d = (b)*(b)-4*(a)*(c);
     return d;
 }
 
-int existence_of_the_solution( double * a,  double * b,  double * c) {
-    if ((*a) == 0 || abs(*a) < EPS) {
-        if ((*b) == 0 ||  abs(*b) < EPS) {
-            if ((*c) == 0 ||  abs(*c) < EPS) {
-                printf("your equation has INF solutions in R quantity");
+int existence_of_the_solution(const double a,const double b,const double c) {
+    if (abs(a) < EPS) {
+        if (abs(b) < EPS) {
+            if (abs(c) < EPS) {
                 return INF;
             } else {
-                printf("your equation has not solutions in R quantity");
                 return 0;
             }
         } else {
-            printf("your equation has one solution in R quantity:");
-            flag = 1;
             return 1;
         }
     }
-     double d = discriminant(a, b, c);
+    double d = discriminant(a, b, c);
     if (d < 0 && abs(d) > EPS) {
-        printf("your equation has not solutions in R quantity");
         return 0;
-    } else if ((d < 0 && abs(d) < EPS) || d == 0) {
-        printf("your equation has one solution in R quantity:");
+    } else if (abs(d) < EPS) {
         return 1;
     } else {
-        printf("your equation has two solutions in R quantity");
         return 2;
     }
 }
 
-void solutions( double * a,  double * b,  double * c) {
+void solutions(const double a,const double b,const double c) {
     int cnt_solutions = existence_of_the_solution(a, b, c);
-     double d = discriminant(a, b, c);
+    double d = discriminant(a, b, c);
+    double x1 = -1.0, x2 = -1.0;
     if (cnt_solutions == 0) {
+        output(0, x1, x2);
         return;
     }
     if (cnt_solutions == 1) {
-        if (flag) {
-             double x = -(*c)/((*b));
-            printf("\nx = %lf", x);
+        if (abs(a)<EPS) {
+            x1 = -c/b;
+            output(1, x1, x2);
             return;
         }
-         double x = -(*b)/(2*(*a));
-        printf("\nx = %lf", x);
+        x1 = -(b)/(2*(a));
+        output(1, x1, x2);
         return;
     }
     if (cnt_solutions == 2) {
-         double x1 = (-(*b) + sqrt(d))/(2*(*a));
-         double x2 = (-(*b) - sqrt(d))/(2*(*a));
-        printf("\nx1 = %lf", x1);
-        printf("\nx2 = %lf", x2);
+        x1 = (-(b) + sqrt(d))/(2*(a));
+        x2 = (-(b) - sqrt(d))/(2*(a));
+        output(2, x1, x2);
         return;
     }
     if (cnt_solutions == INF) {
+        output(-1, x1, x2);
         return;
     }
 }
 
-void solve( double * a,  double * b,  double * c) {
+void solve(double * a,  double * b,  double * c) {
     input(a, b, c);
-    solutions(a, b, c);
+    solutions(*a, *b, *c);
 }
