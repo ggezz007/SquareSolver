@@ -3,10 +3,16 @@
 #include <math.h>
 
 #define EPS 1e-9
-#define INF -1
+
+enum count {
+    cnt_infinity = -1,
+    cnt_zero = 0,
+    cnt_one = 1,
+    cnt_two = 2
+};
 
 struct solution {
-    int cnt;
+    enum count cnt;
     double x1, x2;
 };
 
@@ -27,7 +33,7 @@ solution square_eq(const data coeff);
 solution solve(const data coeff);
 
 int main() {
-    data coeff;
+    data coeff = {};
     input(&coeff);
     solution ans = solve(coeff);
     output(ans);
@@ -45,11 +51,11 @@ void input(data *coeff) {
 }
 
 void output(const solution ans) {
-    if (ans.cnt == INF) {
+    if (ans.cnt == cnt_infinity) {
         printf("your equation has INF solutions in R quantity\n");
-    } else if (ans.cnt == 0) {
+    } else if (ans.cnt == cnt_zero) {
         printf("your equation has not solutions in R quantity\n");
-    } else if (ans.cnt == 1) {
+    } else if (ans.cnt == cnt_one) {
         printf("your equation has one solution in R quantity:"
                "\nx = %lf\n", ans.x1);
     } else {
@@ -66,12 +72,12 @@ double get_diskriminant(const double a, const double b, const double c) {
 solution line_eq(const data coeff) {
     if (fabs(coeff.b) < EPS) {
         if (fabs(coeff.c) < EPS) {
-            return (solution) {INF, -1, -1};
+            return (solution) {cnt_infinity, -1, -1};
         } else {
-            return (solution) {0, -1, -1};
+            return (solution) {cnt_zero, -1, -1};
         }
     }
-    return (solution) {1, -coeff.c / coeff.b, -1};
+    return (solution) {cnt_one, -coeff.c / coeff.b, -1};
 }
 
 solution square_eq(const data coeff) {
@@ -79,15 +85,15 @@ solution square_eq(const data coeff) {
     double x1 = -1;
     double x2 = -1;
     if (d < 0.0 && fabs(d) > EPS) {
-        return (solution) {0, -1, -1};
+        return (solution) {cnt_zero, -1, -1};
     }
     if (fabs(d) < EPS) {
         x1 = -coeff.b / (2 * coeff.a);
-        return (solution) {1, x1, -1};
+        return (solution) {cnt_one, x1, -1};
     }
     x1 = (-coeff.b + sqrt(d)) / (2 * coeff.a);
     x2 = (-coeff.b - sqrt(d)) / (2 * coeff.a);
-    return (solution) {2, x1, x2};
+    return (solution) {cnt_two, x1, x2};
 }
 
 solution solve(const data coeff) {
