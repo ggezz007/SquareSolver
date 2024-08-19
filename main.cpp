@@ -13,11 +13,14 @@ enum RootsNumber {
 
 struct solution {
     RootsNumber cnt;
-    double x1, x2;
+    double x1;
+    double x2;
 };
 
 struct data {
-    double a, b, c;
+    double a;
+    double b;
+    double c;
 };
 
 void input(data *coeff);
@@ -44,12 +47,12 @@ int main() {
 void input(data *coeff) {
     printf("your coefficients for quadratic equation (a * x ^ 2 + b * x + c = 0): \n"
            "also remember that b ^ 2, 4 * a * c, b ^ 2 + 4 * a * c should be the size double, so smaller than 1.7E+308\n"
-           "a =");
-    scanf(" %lf", &(coeff->a));
-    printf("b =");
-    scanf(" %lf", &(coeff->b));
-    printf("c =");
-    scanf(" %lf", &(coeff->c));
+           "a = ");
+    scanf("%lf", &(coeff->a));
+    printf("b = ");
+    scanf("%lf", &(coeff->b));
+    printf("c = ");
+    scanf("%lf", &(coeff->c));
 }
 
 void output(const solution ans) {
@@ -88,8 +91,8 @@ solution line_eq(const data coeff) {
 
 solution square_eq(const data coeff) {
     double d = get_diskriminant(coeff.a, coeff.b, coeff.c);
-    double x1 = -1;
-    double x2 = -1;
+    double x1 = -1.0;
+    double x2 = -1.0;
     if (compare(d, 0.0) && !compare(fabs(d), EPS)) {
         return (solution) {CNT_ZERO, -1, -1};
     }
@@ -108,3 +111,4 @@ solution solve(const data coeff) {
     }
     return square_eq(coeff);
 }
+
