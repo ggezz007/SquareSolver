@@ -59,16 +59,16 @@ Status input_coef_x(double *d) {
     assert(d != NULL);
     int first_checker = scanf("%lf", d);
     if (!first_checker) {
-        fflush(stdin);
+        _flushall();
         return WRONG;
     }
     char symbol;
-    while ((symbol = (char)getchar()) != EOF) {
-        if (symbol=='\n') {
-            fflush(stdin);
+    while ((symbol = (char) getchar()) != EOF) {
+        if (symbol == '\n') {
+            _flushall();
             return CORRECT;
         } else {
-            fflush(stdin);
+            _flushall();
             return WRONG;
         }
     }
@@ -110,7 +110,8 @@ void output(const Solution ans) {
                    "x1 = %lf\n"
                    "x2 = %lf\n", ans.x1, ans.x2);
             break;
-        default: assert(0 && "ans.cnt is incorrect");
+        default:
+            assert(0 && "ans.cnt is incorrect");
     }
 }
 
