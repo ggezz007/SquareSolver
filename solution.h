@@ -13,4 +13,4 @@ Solution solve(const Data coeff);
 
 int is_zero(const double d);
 
-#endif
+#endif //SOLUTION_H

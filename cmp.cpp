@@ -2,9 +2,11 @@
 #include <stdio.h>
 #include <math.h>
 #include <assert.h>
+
 #include "structs.h"
 #include "solution.h"
 #include "cmp.h"
+
 Status compare(const Data coeff, const Solution correct_ans) {
     Solution system_ans = solve(coeff);
     switch (correct_ans.cnt) {
@@ -14,12 +16,14 @@ Status compare(const Data coeff, const Solution correct_ans) {
             } else {
                 return WRONG;
             }
+
         case CNT_ZERO:
             if (system_ans.cnt == CNT_ZERO && isnan(system_ans.x1) && isnan(system_ans.x2)) {
                 return CORRECT;
             } else {
                 return WRONG;
             }
+
         case CNT_ONE:
             if (system_ans.cnt == CNT_ONE &&
                 is_zero(fmax(system_ans.x1, correct_ans.x1) - fmin(system_ans.x1, correct_ans.x1)) &&
@@ -28,6 +32,7 @@ Status compare(const Data coeff, const Solution correct_ans) {
             } else {
                 return WRONG;
             }
+
         case CNT_TWO:
             if (system_ans.cnt == CNT_TWO &&
                 is_zero(fmax(system_ans.x1, correct_ans.x1) - fmin(system_ans.x1, correct_ans.x1)) &&
@@ -36,6 +41,7 @@ Status compare(const Data coeff, const Solution correct_ans) {
             } else {
                 return WRONG;
             }
+
         default:
             assert(0 && "correct_ans is incorrect");
     }

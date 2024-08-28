@@ -4,5 +4,5 @@
 
 void output(const Solution ans);
 
-#endif
+#endif // OUTPUT_H
 

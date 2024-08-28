@@ -30,4 +30,4 @@ struct Unit_test {
     Solution test_ans;
 };
 
-#endif
+#endif //STRUCTS_H

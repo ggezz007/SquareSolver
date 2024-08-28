@@ -30,12 +30,15 @@ Solution square_eq(const Data coeff) {
     assert(!isnan(coeff.a));
     assert(!isnan(coeff.b));
     assert(!isnan(coeff.c));
+
     double d = get_diskriminant(coeff.a, coeff.b, coeff.c);
     double x1 = NAN;
     double x2 = NAN;
+
     if (d < 0.0 && !is_zero(d)) {
         return (Solution) {CNT_ZERO, NAN, NAN};
     }
+
     if (is_zero(d)) {
         x1 = -coeff.b / (2 * coeff.a);
         assert(!isnan(x1));

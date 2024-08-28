@@ -5,4 +5,4 @@ void check_solve(const Unit_test test[], const int len_array);
 
 Status compare(const Data coeff, const Solution correct_ans);
 
-#endif
+#endif // CMP_H

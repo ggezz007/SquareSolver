@@ -11,5 +11,5 @@ void output_wrong(void);
 
 void input(Data * coeff);
 
-#endif
+#endif //INPUT_H
 

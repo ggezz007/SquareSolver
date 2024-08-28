@@ -6,17 +6,22 @@
 #include "input.h"
 
 void clean_stdin() {
-    while (getchar() != '\n');
+    int a = -1;
+    while ((a = getchar()) != '\n' && a != EOF);
 }
 
 Status input_coef_x(double *d) {
     assert(d != NULL);
-    int first_checker = scanf("%lf", d);
-    if (!first_checker) {
+
+    if (!scanf("%lf", d)) {
         clean_stdin();
         return WRONG;
     }
-    char symbol = (char) getchar();
+
+    int symbol = getchar();
+    if (symbol == EOF) {
+        return WRONG;
+    }
     if (symbol == '\n') {
         return CORRECT;
     } else {
@@ -35,13 +40,16 @@ void input(Data *coeff) {
     printf("your coefficients for quadratic equation (a * x ^ 2 + b * x + c = 0): \n"
            "also remember that b ^ 2, 4 * a * c, b ^ 2 + 4 * a * c should be the size double, so smaller than 1.7E+308\n"
            "a = ");
+
     while (!input_coef_x(&(coeff->a))) {
         output_wrong();
     }
+
     printf("b = ");
     while (!input_coef_x(&(coeff->b))) {
         output_wrong();
     }
+
     printf("c = ");
     while (!input_coef_x(&(coeff->c))) {
         output_wrong();

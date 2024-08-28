@@ -15,7 +15,7 @@ void output(const Solution ans) {
             break;
         case CNT_ONE:
             printf("your equation has one Solution in R quantity:\n"
-                   "x = %lf\n", ans.x1);
+                   "x = %lf\n", ans.x1+1);
             break;
         case CNT_TWO:
             printf("your equation has two Solutions in R quantity:\n"
