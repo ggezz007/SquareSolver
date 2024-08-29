@@ -1,33 +1,34 @@
 #ifndef STRUCTS_H
 #define STRUCTS_H
 
+/// Число решений
 enum RootsNumber {
-    CNT_INFINITY = -1,
-    CNT_ZERO = 0,
-    CNT_ONE = 1,
-    CNT_TWO = 2
+    CNT_INFINITY = -1,  ///<- указывает, что решений бесконечное число
+    CNT_ZERO = 0, ///<-указывает, что решений не существует
+    CNT_ONE = 1, ///<-указывает, что существует 1 решение
+    CNT_TWO = 2 ///<-указывает, что существует 2 решения
 };
-
+/// Корректность данных
 enum Status {
-    WRONG = 0,
-    CORRECT = 1,
+    WRONG = 0, ///<-указывает, что есть ошибка в входных данных
+    CORRECT = 1, ///<-указывает, что нет ошибки в входных данных
 };
-
+/// Решение уравнения
 struct Solution {
-    RootsNumber cnt;
-    double x1;
-    double x2;
+    RootsNumber cnt; ///<-указывает на число решений
+    double x1; ///<-указывает на 1 решение
+    double x2; ///<-указывает на 2 решение
 };
-
+/// Коэффициенты уравнения
 struct Data {
-    double a;
-    double b;
-    double c;
+    double a; ///<-указывает на коэффициент a
+    double b; ///<-указывает на коэффициент b
+    double c; ///<-указывает на коэффициент c
 };
-
+/// Unit test
 struct Unit_test {
-    Data test;
-    Solution test_ans;
+    Data test; ///<-указывает на предложенные на проверку коэффциенты
+    Solution test_ans; ///<-указывает на верное решение
 };
 
 #endif //STRUCTS_H

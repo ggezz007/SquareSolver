@@ -15,12 +15,14 @@ int main(int argc, char * argv[]) {
     if (argc <= 1) {
         Data coeff = { NAN, NAN, NAN };
         input(&coeff);
+
         Solution ans = solve(coeff);
+
         output(ans);
 
     } else if (!strcmp(argv[1], "--help")) {
         printf("you requested --help command\n"
-        "Now you can try --test command to solve square eq");
+        "Now you can try --test command to start unit test");
 
     } else if (!strcmp(argv[1], "--test")) {
         const Unit_test test[] = {{{0.0, 0.0, 0.0},    {CNT_INFINITY, NAN, NAN}},
@@ -36,7 +38,7 @@ int main(int argc, char * argv[]) {
         check_solve(test, len_array);
 
     } else {
-        printf("please try --help todo ///");
+        printf("please try --help");
     }
     return 0;
 }

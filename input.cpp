@@ -2,12 +2,13 @@
 #include <stdio.h>
 #include <math.h>
 #include <assert.h>
+
 #include "structs.h"
 #include "input.h"
 
 void clean_stdin() {
-    int a = -1;
-    while ((a = getchar()) != '\n' && a != EOF);
+    int in = -1;
+    while ((in = getchar()) != '\n' && in != EOF);
 }
 
 Status input_coef_x(double *d) {
@@ -22,6 +23,7 @@ Status input_coef_x(double *d) {
     if (symbol == EOF) {
         return WRONG;
     }
+
     if (symbol == '\n') {
         return CORRECT;
     } else {
@@ -37,6 +39,7 @@ void output_wrong() {
 
 void input(Data *coeff) {
     assert(coeff != NULL);
+
     printf("your coefficients for quadratic equation (a * x ^ 2 + b * x + c = 0): \n"
            "also remember that b ^ 2, 4 * a * c, b ^ 2 + 4 * a * c should be the size double, so smaller than 1.7E+308\n"
            "a = ");
